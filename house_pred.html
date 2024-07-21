@@ -3,410 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House Price prediction</title>
+    <title>House Price Prediction</title>
 </head>
+<style>
+    /* Your CSS goes here */
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+}
+
+.top-block {
+background-color: #dff179; /* Light gray background */
+padding: 100px;
+text-align: center;
+display: center;
+align-items: center;
+}
+
+.top-block h1 {
+color: #0f1010;
+font-size: 36px; /* Larger font size */
+margin: 0;
+}
+.top-block p {
+color: #0c0d0d;
+font-size: 36px; /* Larger font size */
+margin: 0;
+}
+.image-container {
+display: flex;
+justify-content: center;
+gap: 20px;
+flex: 1;
+}
+
+.image-container img {
+max-width: 50%;
+height: auto;
+box-shadow: none;
+border-radius: 8px;
+
+}
+.image-containers {
+display: flex;
+justify-content: center;
+gap: 20px;
+flex: 1;
+}
+
+.image-containers img {
+max-width: 90%;
+height: auto;
+box-shadow: none;
+border-radius: 8px;
+
+}
+img {
+border-radius: 50%;
+}
+button {
+background-color: #dad849; /* Green */
+border: none;
+color: white;
+padding: 16px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+transition-duration: 0.4s;
+cursor: pointer;
+}
+.button2:hover {
+background-color: #d8d77b;
+color: white;
+}
+.bottom-block {
+background-color: #f1ff9f; /* Blue background */
+padding: 20px;
+color: rgb(179, 165, 159);
+background-attachment: fixed;
+}
+
+
+.middle-block {
+background-color: #ddec96; /* Blue background */
+padding: 20px;
+color: rgb(21, 22, 22);
+background-attachment: fixed;
+}
+.inputs-section {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 20px;
+}
+
+.left-image-container {
+flex: 1;
+}
+
+.left-image-container img {
+max-width: 100%;
+height: auto;
+box-shadow: none;
+border-radius: 8px;
+}
+
+.inputs {
+flex: 1;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.input-group {
+margin: 10px 0;
+width: 100%;
+max-width: 300px;
+}
+
+.input-group label {
+display: block;
+margin-bottom: 5px;
+transition: color 0.3s ease;
+}
+
+.input-group input {
+width: 100%;
+padding: 10px;
+border: 1px solid #dcd906;
+border-radius: 4px;
+background-color: #d1d3c5;
+color: #060606;
+transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+border-color: #97a7b7;
+outline: none;
+}
+
+.input-group label:hover {
+color: #3cc712;
+}
+.center {
+text-align: center;
+border: 3px solid rgb(98, 170, 88);
+}
+
+
+</style>
 
 <body>
-    <style>
-        body {
-          display: flex;
-          justify-content:center;
-          align-items: center;
-  background-image:url('download1.jpg');
-  background-size: 1000px 1000px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed }
-</style>
-<style>  
-html {
-	overflow-y: scroll; 
-}
+    <div class="top-block">
+        <h1>Home Price Predictor</h1>
+        <div class="image-container">
+            <img src="Capture d'écran 2024-07-21 160325.png" alt="Image 1" id="image1">
+            <img src="Capture d'écran 2024-07-21 160410.png" alt="Image 2" id="image2">
+        </div>
+    </div>
 
-body {
-  background:body-bg;
-  font-family: 'Titillium Web', sans-serif;
-}
-
-a {
-  text-decoration:none;
-  color:main;
-  transition:.5s ease;
-  &:hover {
-    color:main-dark;
-  }
-}
-label {
-  position:absolute;
-  transform:translateY(6px);
-  left:13px;
-  color:rgba(rgb(255, 255, 255),.5);
-  transition:all 0.25s ease;
-  pointer-events: none;
-  font-size:22px;
-  .req {
-  	margin:2px;
-  	color:main;
-  }
-}
-
-label.active {
-  transform:translateY(50px);
-  left:2px;
-  font-size:14px;
-  .req {
-    opacity:0;
-  }
-}
-
-label.highlight {
-	color:white;
-}
-
-
-.form {
-  background:rgba(form-bg,.9);
-  padding: 40px;
-  max-width:600px;
-  margin:40px auto;
-  border-radius:br;
-  box-shadow:0 4px 10px 4px rgba(form-bg,.3);
-}
-
-.tab-group {
-  list-style:none;
-  padding:0;
-  margin:0 0 40px 0;
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  li a {
-    display:block;
-    text-decoration:none;
-    padding:15px;
-    background:rgba(gray-light,.25);
-    color:gray-light;
-    font-size:20px;
-    float:left;
-    width:50%;
-    text-align:center;
-    cursor:pointer;
-    transition:.5s ease;
-  }
-  .active a {
-    background:main;
-    color:rgb(13, 62, 107);
-  }
-}
-
-
-
-h1 {
-  text-align:center;
-  color:rgb(17, 45, 75);
-  font-weight:thin;
-  margin:0 0 40px;
-}
-
-
-
-label.active {
-  transform:translateY(50px);
-  left:2px;
-  font-size:14px;
-  .req {
-    opacity:0;
-  }
-}
-
-label.highlight {
-	color:rgb(27, 116, 189);
-}
-
-input, textarea {
-  font-size:22px;
-  display:block;
-  width:50%;
-  height:10%;
-  padding:15px 5px;
-  background:none;
-  background-image:none;
-  border:1px solid gray-light;
-  color:rgb(21, 23, 24);
-  border-radius:0;
-  transition:border-color .25s ease, box-shadow .25s ease;
-  &:focus {
-		outline:5;
-		border-color:main;
-  }
-}
-
-textarea {
-  border:4px solid gray-light;
-  resize: vertical;
-}
-
-.field-wrap {
-  position:relative;
-  margin-bottom:40px;
-}
-
-.top-row {
-  after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
-  div {
-    float:left;
-    width:48%;
-    margin-right:4%;
-    &:last-child { 
-      margin:0;
-    }
-  }
-  
-}
-​
- 
-            
-       
-
-      body {
-        color: #05181c;
-        font-family: Arial;
-        font-size: 20px;
-      }
-     
-      .wrapper {
-        margin: 0px auto;
-        text-align: center;
-        width: 10%;
-        position: relative;
-        background-color: transparent;
+    <div class="middle-block">
         
-      }
-      
-      .button {
-       
-        padding: 10px 10px;
-        margin: 1px 0px;
-        color: #032b42;
-        font-family: sans-serif;
-        text-transform: uppercase;
-        text-align: space-around;
-        position: relative;
-        text-decoration: none;
-        display: inline-block;
-        border: 2px solid;
-      }
-      .button::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: block;
-        width: 10%;
-        height: 10%;
-        z-index: -1;
-        -webkit-transform: scaleY(0.1);
-        transform: scaleY(0.1);
-        transition: all 0.4s;
-      }
-      .button:hover {
-        color: #1e679b;
-      }
-      .button:hover::before {
-        opacity: 1;
-        background-color: #548fa8;
-        -webkit-transform: scaleY(1);
-        transform: scaleY(1);
-        transition: -webkit-transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02), opacity 0.4s;
-        transition: transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02), opacity;
-      }
-      
-  a {
-    text-decoration: none;
-    display: inline-block;
-    padding: 10px 16px;
-  }
-  
-  a:hover {
-                background-color: transparent;
-                color: rgb(8, 31, 57);
-                
-              }
-              
-              .previous {
-                background-color: transparent;
-                
-                color: rgb(26, 83, 121);
-              }
-              
-              .next {
-                background-color: transparent;
-                color: rgb(26, 83, 121);
-              }
-  .round {
-    border-radius: 100%;
-  }
-  img{
-height:150px;
-width:150px;
-border-radius:0%;
-object-fit:cover;
-
-
-}
-
-              a {
-                text-decoration: none;
-                display: inline-block;
-                padding: 10px 16px;
-              }
-              
-              a:hover {
-                background-color: transparent;
-                color: rgb(18, 55, 80);
-              }
-              
-              .previous {
-                background-color: transparent;
-                
-                color: rgb(51, 98, 153);
-              }
-              
-              .next {
-                background-color: transparent;
-                color: rgb(51, 98, 153);
-              }
-              
-              .round {
-                border-radius: 100%;
-              }
-              .input-group{ position: relative; }
-      .input-group__input{
-        font: inherit;
-        color: #040e17;
-        padding:10px;
-        border: none;
-        border-radius:4px;
-        outline:2px solid #425c78;
-        background-color: transparent;
-        transition:outline-color 500ms;
-      }
-      .input-group__input:is(:focus, :valid) {
-        outline-color:#061e30;
-      }
-      .input-group__label{
-        position: absolute;
-        top:-30px;
-        left:0;
-       translate :10px, 10px;
-        
-        color:#0a3669;
-        transition:transform 500ms, scale 500ms;
-      }
-      .input-group__input:focus +
-      .input-group__label,
-      .input-group__input__input:valid + 
-      .input-group__label{padding-inline:5px; translate: 10, -24px; scale : 0.8;background: color #000;}
-   </style> 
-
-  <html>
-</body>
-<pre>
-    <form method="POST" action="http://localhost:3000/">
-  <ul>
-
-            <h2 style="color:rgb(2, 30, 45)"><div class="input-group"> <input type="text" id="machine_" name="machine_"  class="input-group__input" required />
-               <label for="name of the machine"  class="input-group__label" >Area</label></h2>
+        <div class="inputs-section">
             
-              </div>
-              
-             
-            <h2 style="color:rgb(2, 30, 45)"><div class="input-group">  <input type="text" id="constructor_" name="constructor_" class="input-group__input" required />
-              <label for="name of the constructor "  class="input-group__label" >Bedrooms number</label></h2>
-           
+            <div class="inputs">
+                <p>Fill in the details below to analyze house price prediction.</p>
+                <div class="input-group">
+                    <label for="input1">area:</label>
+                    <input type="text" id="input1">
+                </div>
+                <div class="input-group">
+                    <label for="input2">bedrooms:</label>
+                    <input type="text" id="input2">
+                </div>
+                <div class="input-group">
+                    <label for="input3">bathrooms:</label>
+                    <input type="text" id="input3">
+                </div>
+                <div class="input-group">
+                    <label for="input4">stories:</label>
+                    <input type="text" id="input4">
+                </div>
+                <div class="input-group">
+                    <label for="input5">mainroad:</label>
+                    <input type="text" id="input5">
+                </div>
+                <div class="input-group">
+                    <label for="input6">guestroom:</label>
+                    <input type="text" id="input6">
+                </div>
+                <div class="input-group">
+                    <label for="input7">basement:</label>
+                    <input type="text" id="input7">
+                </div>
+                <div class="input-group">
+                    <label for="input8">hotwaterheating:</label>
+                    <input type="text" id="input8">
+                </div>
+                <div class="input-group">
+                    <label for="input9">airconditioning:</label>
+                    <input type="text" id="input9">
+                </div>
+                <div class="input-group">
+                    <label for="input10">parking:</label>
+                    <input type="text" id="input10">
+                </div>
+                <div class="input-group">
+                    <label for="input10">prefarea:</label>
+                    <input type="text" id="input10">
+                </div>
+                <div class="input-group">
+                    <label for="input10">furnishingstatus:</label>
+                    <input type="text" id="input10">
+                </div>
+                <div> <button id="submit" class="button button2">Predict</button></div>
+                <h2 id="prediction">Prediction: </h2>
+                </div>
             </div>
-            <div>
-              <h2 style="color:rgb(2, 30, 45)"><div class="input-group">  <input type="text" id="description_" name="description_" class="input-group__input" required />
-                <label for="description of the machine"  class="input-group__label" >Bathrooms number</label></h2>
-             
-              </div> 
-              <h2 style="color:rgb(2, 30, 45)"><div class="input-group">  <input type="text" id="description_" name="description_" class="input-group__input" required />
-                <label for="description of the machine"  class="input-group__label" >Stories</label></h2>
-             
-              </div> 
-              
-                <h2 style="color:rgb(2, 30, 45)"><div class="input-group"><select type="text" id="description_" name="description_" class="input-group__input" id="Basement" name="Basement">
-                  <option style="color:rgb(2, 30, 45)" value="yes">yes</option>
-                  <option  style="color:rgb(2, 30, 45)" value="no">no</option>
-                </select>
-               <label for="Mainroad"  class="input-group__label" > Mainroad</label></h2>
-             
-              </div> 
-              
-                <h2 style="color:rgb(2, 30, 45)"><div class="input-group"><select type="text" id="description_" name="description_" class="input-group__input" id="Basement" name="Basement">
-                  <option value="yes">yes</option>
-                  <option value="no">no</option>
-                </select>            
-                <label for="Guestroom"  class="input-group__label" >Guestroom</label></h2>
-             
-              </div> 
-              
-              <h2 style="color:rgb(2, 30, 45)"><div class="input-group"><select type="text" id="description_" name="description_" class="input-group__input" id="Basement" name="Basement">
-                <option value="yes">yes</option>
-                <option value="no">no</option>
             
-            </select>
-                <label for="Basement"  class="input-group__label" >Basement</label></h2>
-              </div> 
+        </div>
+        
+    </div>
 
-              <h2 style="color:rgb(2, 30, 45)"><div class="input-group"><select type="text" id="description_" name="description_" class="input-group__input" id="Basement" name="Basement">
-                <option value="usa">yes</option>
-                <option value="canada">no</option>
-            
-            </select>      
-            <label for="hotwaterheating"  class="input-group__label" >Hotwaterheating</label></h2>
-             
-              </div> 
-              
-                <h2 style="color:rgb(2, 30, 45)"><div class="input-group"><select type="text" id="description_" name="description_" class="input-group__input" id="Basement" name="Basement">
-                  <option value="yes">yes</option>
-                  <option value="no">no</option>
-              
-              </select>  
-               <label for="Airconditioning"  class="input-group__label" > Airconditioning</label></h2>
-             
-              </div> 
-            
-                <h2 style="color:rgb(2, 30, 45)"><div class="input-group">  <input type="text" id="description_" name="description_" class="input-group__input" required />
-                  <label for="description of the machine"  class="input-group__label" >Parking</label></h2>
-               
-                </div> 
-                <h2 style="color:rgb(2, 30, 45)"><div class="input-group"><select type="text" id="description_" name="description_" class="input-group__input" id="Basement" name="Basement">
-                  <option value="yes">yes</option>
-                  <option value="no">no</option>
-              
-              </select>
-                  <label for="prefarea"  class="input-group__label" > prefarea</label></h2>
-             
-              </div> 
-              
-                <h2 style="color:rgb(2, 30, 45)"><div class="input-group"><select type="text" id="description_" name="description_" class="input-group__input" id="Basement" name="Basement">
-                  <option value="yes">furnished</option>
-                  <option value="no">semi-furnished</option>
-                  <option value="no">unfurnished</option>
-              
-              </select>
-                  <label for="description of the machine"  class="input-group__label" > furnishingstatus</label></h2>
-                
-     <div ><button class="button"  class="wrapper" type="submit" id="sendButton">CONFIRM</button></div>
-      
-            </form>
+    <div class="bottom-block">
+        
+            <div class="image-containers">
+                <img src="xxxx.png" alt="Image 1" id="image1">
+        </div>
+    </div>
+    </div>
+    <script>
+        document.getElementById('submit').onclick = async function() {
+            const inputs = {};
+            for (let i = 1; i <= 10; i++) {
+                inputs['input' + i] = document.getElementById('input' + i).value;
+            }
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(inputs)
+            });
+
+            const result = await response.json();
+            if (result.prediction !== undefined) {
+                document.getElementById('prediction').innerText = 'Prediction: ' + result.prediction;
+            } else {
+                document.getElementById('prediction').innerText = 'Error: ' + result.error;
+            }
+        };
+    </script>
 </body>
 </html>
